@@ -3,11 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
-class User extends Authenticatable
+use Tymon\JWTAuth\Contracts\JWTSubject;
+class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -19,8 +21,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'role_id',
         'email',
         'password',
+        'full_name',
+        'image',
+        'address',
+        'contact'
     ];
 
     /**
@@ -33,16 +40,33 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function setPasswordAttribute($value)
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        if ($value && \Illuminate\Support\Str::length($value) !== 60) {
+            $this->attributes['password'] = bcrypt($value);
+        } else {
+            $this->attributes['password'] = $value;
+        }
+    }
+
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function isRole(string $roleName): bool
+    {
+        return $this->role && $this->role->name === $roleName;
+    }
+
+    // JWTSubject
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
