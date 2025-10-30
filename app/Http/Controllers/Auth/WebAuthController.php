@@ -86,7 +86,7 @@ class WebAuthController extends Controller
         }
 
         // ✅ Hash password
-        $validated['role_id'] = 2;
+        $validated['role_id'] = 3;
         $validated['password'] = Hash::make($validated['password']);
 
         // ✅ Simpan user baru
@@ -102,7 +102,7 @@ class WebAuthController extends Controller
         // 📩 Kirim email verifikasi custom markdown
         Mail::to($user->email)->send(new CustomVerifyEmail($user, $verificationUrl));
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
         Auth::login($user);
 

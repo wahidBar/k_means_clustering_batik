@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\WebAuthController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\BatikUmkmPartnerController;
+use App\Http\Controllers\ValidationHistoryController;
 use App\Mail\CustomVerifyEmail;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -91,8 +92,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // /dashboard/partners
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::resource('partners', BatikUmkmPartnerController::class)->only(['index', 'show', 'create', 'edit', 'store', 'destroy', 'update']);
+        Route::resource('products', \App\Http\Controllers\BatikProductController::class)->only(['index', 'show', 'create', 'edit', 'store', 'destroy', 'update']);
+        Route::resource('validation_histories', ValidationHistoryController::class)->only(['index', 'show', 'create', 'edit', 'store', 'destroy', 'update']);
     });
-
 });
 
 // ======================================================

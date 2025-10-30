@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -55,6 +56,18 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         return $this->belongsTo(Role::class);
     }
 
+    public function partner()
+    {
+        return $this->hasOne(BatikUmkmPartner::class, 'user_id', 'id');
+    }
+
+
+    public function validationHistories()
+    {
+        return $this->hasMany(ValidationHistory::class, 'user_id', 'id');
+    }
+
+
     public function isRole(string $roleName): bool
     {
         return $this->role && $this->role->name === $roleName;
@@ -68,5 +81,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function validatedProductions()
+    {
+        return $this->hasMany(MonthlyProduction::class, 'validated_by');
     }
 }

@@ -1,6 +1,6 @@
 @component('mail::message')
 <div style="text-align:center; margin-bottom:20px;">
-    <img src="{{ asset('images/logo_batik.png') }}" alt="Logo Batik Sumenep" style="width:80px;">
+    <img src="{{ asset( 'images/logo-batik.png') }}" alt="Logo Batik Sumenep" style="width:80px;">
 </div>
 
 # Selamat Datang di **BATIK SUMENEP** 🌸

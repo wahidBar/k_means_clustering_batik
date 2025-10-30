@@ -14,8 +14,11 @@ return new class extends Migration
             $table->string('business_name', 50);
             $table->string('owner_name', 30);
             $table->text('address');
+            $table->json('pemasaran')->nullable();
             $table->string('contact', 16)->nullable();
             $table->string('description', 255)->nullable();
+            $table->string('nib', 30); // Nomor Induk Berusaha
+            $table->string('images_partner'); // Simpan path gambar
             $table->string('latitude', 50)->nullable();
             $table->string('longitude', 50)->nullable();
             $table->string('validation_status', 20)->default('Pending');

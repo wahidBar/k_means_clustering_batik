@@ -18,11 +18,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Leaflet CSS -->
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-o9N1jU5m6c0tqkH+g1YnhhZPmI4n8WwHP7rY0w2bY+E="
-        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-o9N1jU5m6c0tqkH+g1YnhhZPmI4n8WwHP7rY0w2bY+E=" crossorigin="" />
 
     {{-- Custom Style --}}
     <style>
@@ -110,6 +107,7 @@
             position: sticky;
             bottom: 0;
             width: 100%;
+            z-index: 1111;
         }
 
         .alert {
@@ -135,96 +133,113 @@
 
                     {{-- Jika user login --}}
                     @auth
-                    {{-- ========== DASHBOARD ========== --}}
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard') }}"
-                            class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
-                            <i class="bi bi-speedometer2"></i> Dashboard
-                        </a>
-                    </li>
+                        {{-- ========== DASHBOARD ========== --}}
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard') }}"
+                                class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
+                                <i class="bi bi-speedometer2"></i> Dashboard
+                            </a>
+                        </li>
 
-                    {{-- ========== MENU ADMIN ========== --}}
-                    @if(auth()->user()->role_id === 1)
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->is('dashboard/partners*') || request()->is('dashboard/users*') ? 'active' : '' }}"
-                            href="#" id="adminMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-gear"></i> Kelola Data
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="adminMenu">
-                            <li>
-                                <a class="dropdown-item {{ request()->is('dashboard/partners*') ? 'active' : '' }}"
-                                    href="{{ route('dashboard.partners.index') }}">
+                        {{-- ========== MENU ADMIN ========== --}}
+                        @if(auth()->user()->role_id === 1)
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle {{ request()->is('dashboard/partners*') || request()->is('dashboard/users*') ? 'active' : '' }}"
+                                    href="#" id="adminMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear"></i> Kelola Data
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="adminMenu">
+                                    <li>
+                                        <a class="dropdown-item {{ request()->is('dashboard/partners*') ? 'active' : '' }}"
+                                            href="{{ route('dashboard.partners.index') }}">
+                                            <i class="bi bi-building"></i> Data UMKM
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item {{ request()->is('dashboard/products*') ? 'active' : '' }}"
+                                            href="{{ route('dashboard.products.index') }}">
+                                            <i class="bi bi-box"></i> Data Product
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item {{ request()->is('dashboard/users*') ? 'active' : '' }}"
+                                            href="{{ route('login') }}">
+                                            <i class="bi bi-people"></i> Data Users
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+
+                        {{-- ========== MENU PARTNER ========== --}}
+                        @if(auth()->user()->role_id === 2 || auth()->user()->role_id === 3)
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.partners.index') }}"
+                                    class="nav-link {{ request()->is('dashboard/partners*') ? 'active' : '' }}">
                                     <i class="bi bi-building"></i> Data UMKM
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item {{ request()->is('dashboard/users*') ? 'active' : '' }}"
-                                    href="{{ route('login') }}">
-                                    <i class="bi bi-people"></i> Data Users
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.products.index') }}"
+                                    class="nav-link {{ request()->is('dashboard/products*') ? 'active' : '' }}">
+                                    <i class="bi bi-box"></i> Data Product
                                 </a>
                             </li>
-                        </ul>
-                    </li>
-                    @endif
-
-                    {{-- ========== MENU PARTNER ========== --}}
-                    @if(auth()->user()->role_id === 2)
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard.partners.index') }}"
-                            class="nav-link {{ request()->is('dashboard/partners*') ? 'active' : '' }}">
-                            <i class="bi bi-building"></i> Data UMKM Saya
-                        </a>
-                    </li>
-                    @endif
-
-                    {{-- ========== DROPDOWN USER INFO ========== --}}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ asset(auth()->user()->image ?? 'images/default-user.png') }}"
-                                alt="avatar" class="rounded-circle me-2" width="30" height="30">
-                            <span>{{ auth()->user()->name }}</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
-                            <li class="dropdown-header text-center">
-                                <strong>{{ auth()->user()->full_name ?? auth()->user()->name }}</strong>
-                                <br>
-                                <span class="badge bg-info text-dark mt-1">
-                                    {{ auth()->user()->role_id == 1 ? 'Administrator' : 'Partner' }}
-                                </span>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <a href="{{ route('login') }}" class="dropdown-item">
-                                    <i class="bi bi-person"></i> Profil Saya
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.validation_histories.index') }}"
+                                    class="nav-link {{ request()->is('dashboard/validation_histories*') ? 'active' : '' }}">
+                                    <i class="bi bi-box"></i> Validation History
                                 </a>
                             </li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button class="dropdown-item text-danger" type="submit">
-                                        <i class="bi bi-box-arrow-right"></i> Keluar
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
+                        @endif
+
+                        {{-- ========== DROPDOWN USER INFO ========== --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ asset(auth()->user()->image ?? 'images/default-user.png') }}" alt="avatar"
+                                    class="rounded-circle me-2" width="30" height="30">
+                                <span>{{ auth()->user()->name }}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
+                                <li class="dropdown-header text-center">
+                                    <strong>{{ auth()->user()->full_name ?? auth()->user()->name }}</strong>
+                                    <br>
+                                    <span class="badge bg-info text-dark mt-1">
+                                        {{ auth()->user()->role_id == 1 ? 'Administrator' : 'Partner' }}
+                                    </span>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a href="{{ route('login') }}" class="dropdown-item">
+                                        <i class="bi bi-person"></i> Profil Saya
+                                    </a>
+                                </li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button class="dropdown-item text-danger" type="submit">
+                                            <i class="bi bi-box-arrow-right"></i> Keluar
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
                     @else
-                    {{-- ========== TAMU BELUM LOGIN ========== --}}
-                    <li class="nav-item">
-                        <a href="{{ route('login') }}"
-                            class="nav-link {{ request()->is('login') ? 'active' : '' }}">
-                            <i class="bi bi-box-arrow-in-right"></i> Login
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('register') }}"
-                            class="nav-link {{ request()->is('register') ? 'active' : '' }}">
-                            <i class="bi bi-person-plus"></i> Daftar
-                        </a>
-                    </li>
+                        {{-- ========== TAMU BELUM LOGIN ========== --}}
+                        <li class="nav-item">
+                            <a href="{{ route('login') }}" class="nav-link {{ request()->is('login') ? 'active' : '' }}">
+                                <i class="bi bi-box-arrow-in-right"></i> Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('register') }}"
+                                class="nav-link {{ request()->is('register') ? 'active' : '' }}">
+                                <i class="bi bi-person-plus"></i> Daftar
+                            </a>
+                        </li>
                     @endauth
                 </ul>
             </div>
@@ -252,11 +267,9 @@
 </html>
 
 <!-- Scrypt Leaflet -->
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-o9YSmkF2pYRsj6R+wOB1p5MNDoAuCEi0aYawslmYd2M="
-    crossorigin="">
-</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9YSmkF2pYRsj6R+wOB1p5MNDoAuCEi0aYawslmYd2M=" crossorigin="">
+    </script>
 
 <!-- Scrypt Navbar -->
 <script>
