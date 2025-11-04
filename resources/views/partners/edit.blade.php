@@ -25,8 +25,8 @@
                 <div class="mb-3">
                     <label>Username</label>
                     <input type="text" class="form-control"
-                        value="{{ auth()->user()->name }} - ({{ auth()->user()->email }})" readonly>
-                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                        value="{{ $partner->user->name }} - ({{ $partner->user->email }})" readonly>
+                    <input type="hidden" name="user_id" value="{{ $partner->user->id }}">
 
                 </div>
                 <div class="mb-3">
