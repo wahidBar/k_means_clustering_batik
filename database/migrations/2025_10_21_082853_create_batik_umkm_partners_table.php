@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('latitude', 50)->nullable();
             $table->string('longitude', 50)->nullable();
             $table->string('validation_status', 20)->default('Pending');
+            $table->string('cluster', 10)->nullable(); // hasil clustering K-Means
             $table->timestamps();
         });
     }

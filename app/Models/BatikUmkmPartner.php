@@ -30,12 +30,18 @@ class BatikUmkmPartner extends Model
         'latitude',
         'longitude',
         'validation_status',
+        'cluster',
     ];
 
     // Relasi ke User
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(BatikProduct::class, 'partner_id', 'partner_id');
     }
     public function validationHistories()
     {
@@ -45,5 +51,10 @@ class BatikUmkmPartner extends Model
     public function latestValidation()
     {
         return $this->hasOne(ValidationHistory::class, 'partner_id')->latestOfMany();
+    }
+
+    public function productions()
+    {
+        return $this->hasMany(MonthlyProduction::class, 'partner_id', 'partner_id');
     }
 }

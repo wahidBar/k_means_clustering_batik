@@ -17,6 +17,7 @@ class BatikProduct extends Model
         'price',
         'image'
     ];
+    // protected $guarded = [];
 
     public function partner()
     {

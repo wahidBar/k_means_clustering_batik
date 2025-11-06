@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\GisController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\WebAuthController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\BatikUmkmPartnerController;
+use App\Http\Controllers\MonthlyProductionController;
 use App\Http\Controllers\ValidationHistoryController;
 use App\Mail\CustomVerifyEmail;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -91,9 +93,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // /dashboard/partners
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
+
+        // Partner/UMKM
         Route::resource('partners', BatikUmkmPartnerController::class)->only(['index', 'show', 'create', 'edit', 'store', 'destroy', 'update']);
         Route::resource('products', \App\Http\Controllers\BatikProductController::class)->only(['index', 'show', 'create', 'edit', 'store', 'destroy', 'update']);
         Route::resource('validation_histories', ValidationHistoryController::class)->only(['index', 'show', 'create', 'edit', 'store', 'destroy', 'update']);
+
+        // MonthlyProduction
+        Route::resource('monthly_production', MonthlyProductionController::class)->only(['index', 'show', 'create', 'edit', 'store', 'destroy', 'update']);
+        Route::post('monthly_production/{id}/approve', [MonthlyProductionController::class, 'approve'])->name('monthly_production.approve');
+        Route::post('monthly_production/{id}/reject', [MonthlyProductionController::class, 'reject'])->name('monthly_production.reject');
+        Route::get(
+            '/monthly-production/partner/{partner_id}/products',
+            [MonthlyProductionController::class, 'getProductsByPartner']
+        );
+
+        // GIS UMKM
+        Route::get('/gis/umkm', [GisController::class, 'index'])->name('gis.umkm');
+        Route::get('/api/gis/umkm', [GisController::class, 'data'])->name('api.gis.umkm');
     });
 });
 

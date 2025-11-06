@@ -224,7 +224,7 @@ class BatikUmkmPartnerController extends Controller
 
         // Update data utama UMKM
         $partner->update($validated);
-
+        // dd($validated);
         // Jika admin mengubah status validasi, catat riwayat
         if ($user->role_id == 1 && $request->filled('validation_status')) {
             $status = $request->validation_status;

@@ -12,13 +12,12 @@ return new class extends Migration
             $table->id('production_id');
             $table->unsignedBigInteger('partner_id');
             $table->unsignedBigInteger('product_id');
-            $table->string('month', 10);
+            $table->date('month');
             $table->integer('total_quantity')->nullable();
             $table->text('production_notes')->nullable();
-            $table->string('validation_status', 20)->default('pending'); // pending, approved, rejected
+            $table->string('validation_status', 20)->default('pending'); // Pending, Approved, Rejected
             $table->unsignedBigInteger('validated_by')->nullable(); // user_id admin validator
             $table->timestamp('validation_date')->nullable();
-            $table->string('cluster', 10)->nullable(); // hasil clustering K-Means
             $table->timestamps();
 
             // Relasi ke partner, product, dan user validator

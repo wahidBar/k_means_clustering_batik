@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-5">
+    <div class="container py-5 vh-100">
         <h3 class="mb-4">
             {{ $user->role === 'partner' ? 'Riwayat Validasi Usaha Anda' : 'Riwayat Validasi Semua UMKM' }}
         </h3>

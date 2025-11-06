@@ -21,7 +21,6 @@ class MonthlyProduction extends Model
         'validation_status',
         'validated_by',
         'validation_date',
-        'cluster',
     ];
 
     // 🔗 Relasi ke Partner (UMKM)

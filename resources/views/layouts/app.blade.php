@@ -114,6 +114,9 @@
             animation: fadeDown 0.6s ease;
         }
     </style>
+    @stack('styles')
+    @stack('scripts')
+
 </head>
 
 <body>
@@ -162,6 +165,18 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a class="dropdown-item {{ request()->is('dashboard/monthly_production*') ? 'active' : '' }}"
+                                            href="{{ route('dashboard.monthly_production.index') }}">
+                                            <i class="bi bi-calendar-week"></i> Data Produksi Bulanan
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item {{ request()->is('dashboard/gis/umkm*') ? 'active' : '' }}"
+                                            href="{{ route('dashboard.gis.umkm') }}">
+                                            <i class="bi bi-geo-alt"></i> GIS UMKM
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item {{ request()->is('dashboard/users*') ? 'active' : '' }}"
                                             href="{{ route('login') }}">
                                             <i class="bi bi-people"></i> Data Users
@@ -179,16 +194,40 @@
                                     <i class="bi bi-building"></i> Data UMKM
                                 </a>
                             </li>
+
                             <li class="nav-item">
                                 <a href="{{ route('dashboard.products.index') }}"
                                     class="nav-link {{ request()->is('dashboard/products*') ? 'active' : '' }}">
                                     <i class="bi bi-box"></i> Data Product
                                 </a>
                             </li>
+
+                            {{-- ========== DROPDOWN PRODUKSI BULANAN & GIS ========== --}}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle {{ request()->is('dashboard/monthly_production*') || request()->is('dashboard/gis*') ? 'active' : '' }}"
+                                    href="#" id="productionMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-graph-up"></i> Produksi Bulanan
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="productionMenu">
+                                    <li>
+                                        <a class="dropdown-item {{ request()->is('dashboard/gis/umkm*') ? 'active' : '' }}"
+                                            href="{{ route('dashboard.gis.umkm') }}">
+                                            <i class="bi bi-geo-alt"></i> GIS UMKM
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item {{ request()->is('dashboard/monthly_production*') ? 'active' : '' }}"
+                                            href="{{ route('dashboard.monthly_production.index') }}">
+                                            <i class="bi bi-calendar-week"></i> Data Produksi Bulanan
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
                             <li class="nav-item">
                                 <a href="{{ route('dashboard.validation_histories.index') }}"
                                     class="nav-link {{ request()->is('dashboard/validation_histories*') ? 'active' : '' }}">
-                                    <i class="bi bi-box"></i> Validation History
+                                    <i class="bi bi-check2-square"></i> Validation History
                                 </a>
                             </li>
                         @endif
@@ -245,6 +284,7 @@
             </div>
         </div>
     </nav>
+
 
 
 

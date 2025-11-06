@@ -1,0 +1,27 @@
+partner_id,NAMA UMKM,partner_status,pemasaran,kuantitas,PEMASARAN_CODE,KUANTITAS_CLEAN,QUANTITY_NORM_RAW,PEMASARAN_NORM_RAW,QUANTITY_NORM,PEMASARAN_NORM
+1,Batik Tulis Mantaka,Terverifikasi,"[""Lokal"", ""Nasional"", ""Luar Negeri""]",210.00,3,210.00,0.40,1.00,0.40,1.00
+2,Batik Tulis Dermaga,Terverifikasi,"[""Lokal"", ""Nasional"", ""Luar Negeri""]",240.00,3,240.00,0.60,1.00,0.60,1.00
+3,Batik Tulis Melati,Terverifikasi,"[""Lokal"", ""Nasional"", ""Luar Negeri""]",300.00,3,300.00,1.00,1.00,1.00,1.00
+4,Batik Tulis Al - Barokah,Terverifikasi,"[""Lokal"", ""Nasional"", ""Luar Negeri""]",300.00,3,300.00,1.00,1.00,1.00,1.00
+5,Batik Tulis Al - Qomar,Terverifikasi,"[""Lokal"", ""Nasional""]",240.00,2,240.00,0.60,0.00,0.60,0.00
+6,Batik Tulis Canteng Koning,Terverifikasi,"[""Lokal"", ""Nasional"", ""Luar Negeri""]",300.00,3,300.00,1.00,1.00,1.00,1.00
+7,Batik Tulis Safira,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+8,Batik Tulis Dharma,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+9,Batik Tulis Arah Naga Tresna,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+10,Batik Tulis Kombung,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+11,Batik Tulis Rutan Sumenep,Terverifikasi,"[""Lokal"", ""Nasional""]",300.00,2,300.00,1.00,0.00,1.00,0.00
+12,Batik Tulis Dika,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+13,Batik Tulis Paregi,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+14,Batik Tulis Kekin Pesona Kharisma,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+15,Batik Tulis Wawan,Terverifikasi,"[""Lokal"", ""Nasional""]",180.00,2,180.00,0.20,0.00,0.20,0.00
+16,Batik Tulis Joni,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+17,Batik Tulis Nusa Indah,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+18,Batik Tulis Indah Galeri,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+19,Batik Tulis Dharma Melati Putih,Terverifikasi,"[""Lokal"", ""Nasional""]",240.00,2,240.00,0.60,0.00,0.60,0.00
+20,Batik Tulis Cemara,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+21,Batik Tulis Sinar,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+22,Batik Tulis Labatik,Terverifikasi,"[""Lokal"", ""Nasional""]",180.00,2,180.00,0.20,0.00,0.20,0.00
+23,Batik Tulis Dhamar Kambeng,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00
+24,Batik Tullis Pajjer,Terverifikasi,"[""Lokal"", ""Nasional""]",180.00,2,180.00,0.20,0.00,0.20,0.00
+25,Batik Tulis Rato,Terverifikasi,"[""Lokal"", ""Nasional""]",180.00,2,180.00,0.20,0.00,0.20,0.00
+26,Batik Tulis Serat Kedaton,Terverifikasi,"[""Lokal"", ""Nasional""]",150.00,2,150.00,0.00,0.00,0.00,0.00

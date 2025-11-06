@@ -1,0 +1,27 @@
+partner_id,NAMA UMKM,partner_status,pemasaran,kuantitas,PEMASARAN_CODE,KUANTITAS_CLEAN,QUANTITY_NORM_RAW,PEMASARAN_NORM_RAW,QUANTITY_NORM,PEMASARAN_NORM,cluster,cluster_iter_1,cluster_iter_2
+1,Batik Tulis Mantaka,Terverifikasi,"[""Lokal"", ""Nasional"", ""Luar Negeri""]",210.0,3,210.0,0.40000000000000013,1.0,0.4,1.0,3,3,3
+2,Batik Tulis Dermaga,Terverifikasi,"[""Lokal"", ""Nasional"", ""Luar Negeri""]",240.0,3,240.0,0.6000000000000001,1.0,0.6,1.0,3,3,3
+3,Batik Tulis Melati,Terverifikasi,"[""Lokal"", ""Nasional"", ""Luar Negeri""]",300.0,3,300.0,1.0,1.0,1.0,1.0,2,2,2
+4,Batik Tulis Al - Barokah,Terverifikasi,"[""Lokal"", ""Nasional"", ""Luar Negeri""]",300.0,3,300.0,1.0,1.0,1.0,1.0,2,2,2
+5,Batik Tulis Al - Qomar,Terverifikasi,"[""Lokal"", ""Nasional""]",240.0,2,240.0,0.6000000000000001,0.0,0.6,0.0,1,1,1
+6,Batik Tulis Canteng Koning,Terverifikasi,"[""Lokal"", ""Nasional"", ""Luar Negeri""]",300.0,3,300.0,1.0,1.0,1.0,1.0,2,2,2
+7,Batik Tulis Safira,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+8,Batik Tulis Dharma,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+9,Batik Tulis Arah Naga Tresna,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+10,Batik Tulis Kombung,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+11,Batik Tulis Rutan Sumenep,Terverifikasi,"[""Lokal"", ""Nasional""]",300.0,2,300.0,1.0,0.0,1.0,0.0,1,1,1
+12,Batik Tulis Dika,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+13,Batik Tulis Paregi,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+14,Batik Tulis Kekin Pesona Kharisma,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+15,Batik Tulis Wawan,Terverifikasi,"[""Lokal"", ""Nasional""]",180.0,2,180.0,0.20000000000000018,0.0,0.2,0.0,1,1,1
+16,Batik Tulis Joni,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+17,Batik Tulis Nusa Indah,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+18,Batik Tulis Indah Galeri,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+19,Batik Tulis Dharma Melati Putih,Terverifikasi,"[""Lokal"", ""Nasional""]",240.0,2,240.0,0.6000000000000001,0.0,0.6,0.0,1,1,1
+20,Batik Tulis Cemara,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+21,Batik Tulis Sinar,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+22,Batik Tulis Labatik,Terverifikasi,"[""Lokal"", ""Nasional""]",180.0,2,180.0,0.20000000000000018,0.0,0.2,0.0,1,1,1
+23,Batik Tulis Dhamar Kambeng,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
+24,Batik Tullis Pajjer,Terverifikasi,"[""Lokal"", ""Nasional""]",180.0,2,180.0,0.20000000000000018,0.0,0.2,0.0,1,1,1
+25,Batik Tulis Rato,Terverifikasi,"[""Lokal"", ""Nasional""]",180.0,2,180.0,0.20000000000000018,0.0,0.2,0.0,1,1,1
+26,Batik Tulis Serat Kedaton,Terverifikasi,"[""Lokal"", ""Nasional""]",150.0,2,150.0,0.0,0.0,0.0,0.0,1,1,1
