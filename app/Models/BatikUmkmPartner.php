@@ -11,7 +11,9 @@ class BatikUmkmPartner extends Model
     use HasFactory;
 
     protected $table = 'batik_umkm_partner';
-    protected $primaryKey = 'partner_id';
+    protected $primaryKey = 'partner_id'; // ❗ wajib
+    public $incrementing = true;         // default true, kalau auto increment
+    protected $keyType = 'int';
 
     protected $casts = [
         'pemasaran' => 'array',

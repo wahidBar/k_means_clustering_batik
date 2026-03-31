@@ -83,6 +83,8 @@ class RoleSeeder extends Seeder
         $header = array_shift($rows);
         $header = array_map('trim', $header);
 
+        // hapus baris kosong
+        $rows = array_filter($rows, fn($row) => !empty(array_filter($row, fn($v) => trim($v) !== '')));
         // --------------------
         // 3) Mapping kolom
         // --------------------
@@ -178,7 +180,7 @@ class RoleSeeder extends Seeder
             $product = BatikProduct::create([
                 'partner_id' => $partner->partner_id,
                 'type_id' => $types[array_rand($types) ?? 0] ?? null,
-                'product_name' => 'Batik ' . Str::limit($nama, 50),
+                'product_name' => Str::limit($nama, 50),
                 'description' => $keterangan ?: 'Produk batik khas',
                 'price' => rand(120000, 450000),
                 'image' => 'images/product_csv_' . ($idx + 1) . '.jpg',
@@ -227,9 +229,10 @@ class RoleSeeder extends Seeder
             ['Batik Arjuna', 'Eko Susanto', 'Desa Rubaru, Rubaru'],
             ['Batik Sinar Baru', 'Nina Herlina', 'Desa Dungkek, Dungkek'],
             ['Batik Mawar', 'Rifqi Ramadhan', 'Desa Gapura, Gapura'],
-            ['Batik Sari Madura', 'Yani Kusuma', 'Desa Ganding, Ganding'],
+            ['Batik Kedondong', 'Yani Kusuma', 'Desa Ganding, Ganding'],
             ['Batik Pelangi', 'Taufik Ismail', 'Desa Dasuk, Dasuk'],
         ];
+
 
         foreach ($extra as $i => $e) {
             $statusPartner = rand(0, 1) ? 'Pending' : 'Tolak';
@@ -258,14 +261,14 @@ class RoleSeeder extends Seeder
                     'description' => 'UMKM batik tambahan',
                     'nib' => 'NIB-' . rand(100000, 999999),
                     'images_partner' => 'images/partner_extra_' . ($i + 1) . '.jpg',
-                    'latitude' => strval(-7.2 + ($i * 0.002)),
-                    'longitude' => strval(113.7 + ($i * 0.002)),
+                    'latitude' => strval(-7.0 - ($idx * 0.001)),
+                    'longitude' => strval(113.8 + ($idx * 0.001)),
                     'validation_status' => $statusPartner,
                 ]
             );
 
             $product = BatikProduct::create([
-                'partner_id' => $partner->id,
+                'partner_id' => $partner->partner_id,
                 'type_id' => $types[array_rand($types) ?? 0] ?? null,
                 'product_name' => 'Batik Motif ' . ucfirst(Str::random(4)),
                 'description' => 'Produk batik variasi',
@@ -274,13 +277,11 @@ class RoleSeeder extends Seeder
             ]);
 
             MonthlyProduction::create([
-                'partner_id' => $partner->id,
+                'partner_id' => $partner->partner_id,
                 'product_id' => $product->id,
                 'month' => Carbon::now()->subMonths(rand(0, 5))->startOfMonth(),
                 'total_quantity' => rand(20, 300),
                 'production_notes' => 'Data tambahan simulasi',
-                'latitude' => strval(-7.0 - ($idx * 0.001)),
-                'longitude' => strval(113.8 + ($idx * 0.001)),
                 'validation_status' => $statusProd,
             ]);
             $totalProductions++;

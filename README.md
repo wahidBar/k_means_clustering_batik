@@ -1,61 +1,158 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+🧠 K-Means Clustering for UMKM Batik Sumenep
+Data-Driven Segmentation System (Laravel + Python Integration)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A hybrid web application that integrates Laravel (backend system) with Python (machine learning processing) to cluster UMKM Batik businesses based on production capacity and market reach.
 
-## About Laravel
+📌 Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project is built to analyze and segment UMKM Batik in Sumenep using the K-Means clustering algorithm, enabling data-driven insights for:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Business classification
+Market expansion strategies
+Government or stakeholder decision-making
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The system automatically processes real data and groups UMKM into meaningful clusters.
 
-## Learning Laravel
+🏗️ Architecture (Real Implementation)
+Laravel (PHP)
+│
+├── Controller (ClusteringController.php)
+│        ↓
+│   Execute Python Script
+│        ↓
+Python (ClusteringController.py)
+│
+├── Data Fetch (MySQL)
+├── Preprocessing (MinMaxScaler)
+├── K-Means Training
+├── Elbow Method (Auto K Detection)
+│
+└── Output → /hasil_cluster_umkm (CSV / Result)
+│
+↓
+Laravel reads & displays results
+⚙️ Tech Stack
+Backend System
+Laravel (PHP Framework)
+MVC Architecture
+MySQL Database
+Machine Learning
+Python 3
+Pandas
+NumPy
+Scikit-learn (KMeans)
+Matplotlib (Elbow Visualization)
+Integration
+Shell execution (shell_exec)
+Shared database (MySQL)
+File-based output (CSV)
+🔥 Key Features
+✅ Automatic UMKM clustering using K-Means
+✅ Auto-detection of optimal cluster (Elbow Method)
+✅ Data normalization (MinMaxScaler)
+✅ Integration Laravel ↔ Python (real execution)
+✅ Result export (CSV in /hasil_cluster_umkm)
+✅ Database-driven processing (no dummy data)
+🧠 Machine Learning Pipeline
+1. Data Source
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Data fetched directly from MySQL:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Monthly Production
+Market Coverage
+2. Preprocessing
+MinMaxScaler()
+Normalize values to avoid bias between features
+3. Clustering
+KMeans(n_clusters=k, init='k-means++')
+4. Optimal K Detection
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Using Elbow Method:
 
-## Laravel Sponsors
+Iterates multiple K values
+Measures inertia (distance)
+Automatically determines best K
+5. Output
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Generated files:
 
-### Premium Partners
+/hasil_cluster_umkm/
+├── clustering_result.csv
+├── centroid.csv
+├── elbow_plot.png
+🔌 Laravel ↔ Python Integration
+Execution from Laravel:
+$output = shell_exec("python3 app/Http/Controllers/ClusteringController.py");
+Flow:
+User triggers clustering from Laravel
+Laravel executes Python script
+Python processes data & saves result
+Laravel reads result and displays
+📂 Project Structure (Based on Your Code)
+K_MEANS_CLUSTERING_BATIK/
+│
+├── app/
+│   └── Http/
+│       └── Controllers/
+│           ├── ClusteringController.php
+│           └── ClusteringController.py  👈 ML Logic
+│
+├── database/
+├── hasil_cluster_umkm/ 👈 Output hasil clustering
+├── resources/views/
+├── routes/
+├── .env
+└── ...
+🗄️ Database Configuration (Python Side)
+db_config = {
+    "host": "localhost",
+    "user": "pma",
+    "password": "1234567",
+    "database": "db_k_means_clustering_batik"
+}
+📊 Example Clustering Result
+Cluster	Description
+C1	High Production - Wide Market
+C2	Medium Production - Regional
+C3	Low Production - Local
+🚀 Installation
+1. Clone Project
+git clone https://github.com/yourusername/k_means_clustering_batik.git
+cd k_means_clustering_batik
+2. Setup Laravel
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+3. Setup Python Environment
+python3 -m venv .venv
+source .venv/bin/activate
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+pip install pandas numpy scikit-learn matplotlib mysql-connector-python
+4. Run Application
+php artisan serve
+5. Run Clustering
 
-## Contributing
+Trigger via:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Web button (recommended)
+Or manually:
+python3 app/Http/Controllers/ClusteringController.py
+🎯 Use Cases
+📊 UMKM classification & segmentation
+🏛 Government data analysis
+📈 Business growth strategy
+🧠 Data science learning implementation
+🏆 Why This Project Stands Out
+🔥 Real-world dataset (not dummy)
+🔥 Hybrid architecture (Laravel + Python ML)
+🔥 Auto clustering optimization (Elbow Method)
+🔥 Clean separation between system & ML logic
+🔥 Production-like structure (controller, DB, output)
+📬 Contact
+📧 Email: your-email@example.com
+💻 GitHub: github.com/yourusername
+💼 LinkedIn: linkedin.com/in/yourprofile
+⭐ Final Note
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project demonstrates how machine learning can be practically integrated into a production-ready web application, bridging backend engineering with data science.

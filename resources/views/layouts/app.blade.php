@@ -245,8 +245,17 @@
                                     <strong>{{ auth()->user()->full_name ?? auth()->user()->name }}</strong>
                                     <br>
                                     <span class="badge bg-info text-dark mt-1">
-                                        {{ auth()->user()->role_id == 1 ? 'Administrator' : 'Partner' }}
+                                        @if (auth()->user()->role_id == 1)
+                                            Administrator
+                                        @elseif (auth()->user()->role_id == 2)
+                                            Partner
+                                        @elseif (auth()->user()->role_id == 3)
+                                            Publik
+                                        @else
+                                            Unknown
+                                        @endif
                                     </span>
+
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
