@@ -1,158 +1,113 @@
-🧠 K-Means Clustering for UMKM Batik Sumenep
-Data-Driven Segmentation System (Laravel + Python Integration)
+# 🧠 K-Means Clustering UMKM Batik Sumenep
 
-A hybrid web application that integrates Laravel (backend system) with Python (machine learning processing) to cluster UMKM Batik businesses based on production capacity and market reach.
+Sistem ini merupakan aplikasi berbasis **Laravel + Python** yang digunakan untuk melakukan **segmentasi UMKM Batik di Sumenep** menggunakan algoritma **K-Means Clustering**.
 
-📌 Overview
+Aplikasi ini membantu mengelompokkan UMKM berdasarkan **produksi bulanan** dan **jangkauan pasar**, sehingga dapat digunakan untuk analisis bisnis dan pengambilan keputusan berbasis data.
 
-This project is built to analyze and segment UMKM Batik in Sumenep using the K-Means clustering algorithm, enabling data-driven insights for:
+---
 
-Business classification
-Market expansion strategies
-Government or stakeholder decision-making
+## 🚀 Fitur Utama
 
-The system automatically processes real data and groups UMKM into meaningful clusters.
+📊 **Clustering Otomatis (K-Means)**  
+Mengelompokkan UMKM ke dalam beberapa cluster berdasarkan data produksi dan pemasaran.
 
-🏗️ Architecture (Real Implementation)
-Laravel (PHP)
-│
-├── Controller (ClusteringController.php)
-│        ↓
-│   Execute Python Script
-│        ↓
-Python (ClusteringController.py)
-│
-├── Data Fetch (MySQL)
-├── Preprocessing (MinMaxScaler)
-├── K-Means Training
-├── Elbow Method (Auto K Detection)
-│
-└── Output → /hasil_cluster_umkm (CSV / Result)
-│
-↓
-Laravel reads & displays results
-⚙️ Tech Stack
-Backend System
-Laravel (PHP Framework)
-MVC Architecture
-MySQL Database
-Machine Learning
-Python 3
-Pandas
-NumPy
-Scikit-learn (KMeans)
-Matplotlib (Elbow Visualization)
-Integration
-Shell execution (shell_exec)
-Shared database (MySQL)
-File-based output (CSV)
-🔥 Key Features
-✅ Automatic UMKM clustering using K-Means
-✅ Auto-detection of optimal cluster (Elbow Method)
-✅ Data normalization (MinMaxScaler)
-✅ Integration Laravel ↔ Python (real execution)
-✅ Result export (CSV in /hasil_cluster_umkm)
-✅ Database-driven processing (no dummy data)
-🧠 Machine Learning Pipeline
-1. Data Source
+📈 **Auto Optimal Cluster (Elbow Method)**  
+Menentukan jumlah cluster terbaik secara otomatis.
 
-Data fetched directly from MySQL:
+⚖️ **Normalisasi Data**  
+Menggunakan *MinMaxScaler* agar hasil clustering lebih akurat.
 
-Monthly Production
-Market Coverage
-2. Preprocessing
-MinMaxScaler()
-Normalize values to avoid bias between features
-3. Clustering
-KMeans(n_clusters=k, init='k-means++')
-4. Optimal K Detection
+🔗 **Integrasi Laravel + Python**  
+Laravel sebagai backend, Python sebagai engine machine learning.
 
-Using Elbow Method:
+📂 **Export Hasil Clustering**  
+Hasil disimpan dalam bentuk CSV:
+- clustering_result.csv  
+- centroid.csv  
+- elbow_plot.png  
 
-Iterates multiple K values
-Measures inertia (distance)
-Automatically determines best K
-5. Output
+🗄️ **Database Driven**  
+Menggunakan data real dari MySQL (bukan dummy).
 
-Generated files:
+---
 
-/hasil_cluster_umkm/
-├── clustering_result.csv
-├── centroid.csv
-├── elbow_plot.png
-🔌 Laravel ↔ Python Integration
-Execution from Laravel:
-$output = shell_exec("python3 app/Http/Controllers/ClusteringController.py");
-Flow:
-User triggers clustering from Laravel
-Laravel executes Python script
-Python processes data & saves result
-Laravel reads result and displays
-📂 Project Structure (Based on Your Code)
+## ⚙️ Teknologi
+
+- **Laravel (PHP)** – Backend & Web System  
+- **Python 3** – Machine Learning Processing  
+- **Pandas & NumPy** – Data Processing  
+- **Scikit-learn** – K-Means Algorithm  
+- **Matplotlib** – Visualisasi Elbow Method  
+- **MySQL** – Database  
+- **Shell Execution** – Integrasi Laravel ke Python  
+
+---
+
+## 🧠 Cara Kerja Sistem
+
+1. Data UMKM diambil dari database MySQL  
+2. Data dinormalisasi menggunakan MinMaxScaler  
+3. Sistem mencari jumlah cluster terbaik (Elbow Method)  
+4. K-Means dijalankan untuk clustering  
+5. Hasil disimpan ke folder `/hasil_cluster_umkm`  
+6. Laravel menampilkan hasil ke user  
+
+---
+
+## 📁 Struktur Project
 K_MEANS_CLUSTERING_BATIK/
 │
-├── app/
-│   └── Http/
-│       └── Controllers/
-│           ├── ClusteringController.php
-│           └── ClusteringController.py  👈 ML Logic
+├── app/Http/Controllers/
+│ ├── ClusteringController.php
+│ └── ClusteringController.py
 │
+├── hasil_cluster_umkm/
 ├── database/
-├── hasil_cluster_umkm/ 👈 Output hasil clustering
 ├── resources/views/
 ├── routes/
-├── .env
-└── ...
-🗄️ Database Configuration (Python Side)
-db_config = {
-    "host": "localhost",
-    "user": "pma",
-    "password": "1234567",
-    "database": "db_k_means_clustering_batik"
-}
-📊 Example Clustering Result
-Cluster	Description
-C1	High Production - Wide Market
-C2	Medium Production - Regional
-C3	Low Production - Local
-🚀 Installation
-1. Clone Project
+└── .env
+
+---
+
+## 🔌 Integrasi Laravel ↔ Python
+
+Laravel menjalankan Python script:
+
+```php
+$output = shell_exec("python3 app/Http/Controllers/ClusteringController.py");
+🧪 Cara Menjalankan
+Clone repository
 git clone https://github.com/yourusername/k_means_clustering_batik.git
 cd k_means_clustering_batik
-2. Setup Laravel
+Setup Laravel
 composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate
-3. Setup Python Environment
+Setup Python
 python3 -m venv .venv
 source .venv/bin/activate
 
 pip install pandas numpy scikit-learn matplotlib mysql-connector-python
-4. Run Application
+Jalankan aplikasi
 php artisan serve
-5. Run Clustering
-
-Trigger via:
-
-Web button (recommended)
-Or manually:
+Jalankan clustering
 python3 app/Http/Controllers/ClusteringController.py
-🎯 Use Cases
-📊 UMKM classification & segmentation
-🏛 Government data analysis
-📈 Business growth strategy
-🧠 Data science learning implementation
-🏆 Why This Project Stands Out
-🔥 Real-world dataset (not dummy)
-🔥 Hybrid architecture (Laravel + Python ML)
-🔥 Auto clustering optimization (Elbow Method)
-🔥 Clean separation between system & ML logic
-🔥 Production-like structure (controller, DB, output)
-📬 Contact
-📧 Email: your-email@example.com
-💻 GitHub: github.com/yourusername
-💼 LinkedIn: linkedin.com/in/yourprofile
-⭐ Final Note
+📊 Use Case
+Analisis UMKM oleh pemerintah
+Segmentasi bisnis
+Penentuan strategi pemasaran
+Implementasi machine learning di web app
+📌 Catatan
 
-This project demonstrates how machine learning can be practically integrated into a production-ready web application, bridging backend engineering with data science.
+Sistem ini menggunakan data real UMKM Batik Sumenep dan dirancang untuk menunjukkan bagaimana machine learning dapat diintegrasikan ke dalam aplikasi web backend secara nyata.
+
+📜 Lisensi
+
+Proyek ini menggunakan lisensi MIT.
+Silakan digunakan, dikembangkan, dan dimodifikasi sesuai kebutuhan.
+
+
+---
+
+Kalau kamu mau versi yang **lebih “wah” lagi (pakai badge, screenshot, GIF demo, dll)** bilang aja — itu yang biasanya bikin recruiter langsung tertarik 🔥
